@@ -94,7 +94,7 @@ Flux나 Redux만으로도 난해했던것이 더욱 새로운 개념을 가져�
 
 <!--これは単純な「再利用可能」という言葉以上の意味があります。どういうことかというと再利用可能なContainerコンポーネントを開発する上で不可欠な要素だからです。Middlewareというのは本当にやっかいで気にしなければならないことが山ほどあって、さらに再利用可能なコンポーネントとして導入する際にも、どの位置にMiddlewareを組み込むか考えないといけません。一方でSagaであれば原則的にお互いに独立して動作するので自分の関心のある世界だけでコードを書くことができて、他のSagaに影響を与えることがありません。-->
 
-추상적인 설명은 그다지 이해도가 높아지지 않기에, redux-thnk로 쓴 코드와 비교하며 redux-saga로 인해 어떻게 바뀌는지를 한번 봅시다.
+추상적인 설명은 그다지 이해도가 높아지지 않기에, redux-thunk로 쓴 코드와 비교하며 redux-saga로 인해 어떻게 바뀌는지를 한번 봅시다.
 
 <!--抽象的な説明だとなかなか理解が進まないと思うので、redux-thunkで書いたコードと比較しながらredux-sagaによってどのように変わるのか見ていきましょう。-->
 
@@ -124,7 +124,7 @@ Flux나 Redux만으로도 난해했던것이 더욱 새로운 개념을 가져�
 
 <!--通信処理が完了するまで「読込中...」のようなメッセージを表示するためには、通信の状態をStoreで保持した上で、通信の開始・成功・失敗の３つのタイミングでActionをdispatchして状態を変化させる必要があります。この実装パターンはReduxの[サンプルコード](https://github.com/reactjs/redux/blob/master/examples/real-world/src/actions/index.js#L3-L5)がおそらくオリジナルで、それを切り出した[redux-api-middleware](https://github.com/agraboso/redux-api-middleware)というライブラリもありますが、今回はMiddlewareやredux-api-middlewareを使わずに書いています。通信の状態だけでなく、通信が正常に終了したのか、エラーによって終了したのかも合わせて格納しておくとエラーメッセージの表示に使うことができて便利です。-->
 
-샘플 코드는 3가지의 Action 타입 `REQUEST_USER`, `SUCCESS_USER`, `FAILURE_USER`의 문자열 상수와 Action 오브젝트를 생성하기위한 3가지의 Action Creator `requestUser`,  `successUser`, `failureUser`는 `actions.js`는 `actions.js`에 정의되어 있습니다.
+샘플 코드는 3가지의 Action 타입 `REQUEST_USER`, `SUCCESS_USER`, `FAILURE_USER`의 문자열 상수와 Action 오브젝트를 생성하기위한 3가지의 Action Creator `requestUser`,  `successUser`, `failureUser`는 `actions.js`에 정의되어 있습니다.
 
 <!--サンプルコードでは３つのAction Type `REQUEST_USER`、`SUCCESS_USER`、`FAILURE_USER` の文字列定数と、Actionオブジェクトを生成するための３つのAction Creator `requestUser`、`successUser`、`failureUser` は `actions.js` で定義済みとします。-->
 
